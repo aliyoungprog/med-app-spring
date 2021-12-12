@@ -28,8 +28,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.springframework.boot:spring-boot-devtools")
     compileOnly("com.h2database:h2")
+    implementation("mysql:mysql-connector-java:8.0.16")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+    implementation("org.springdoc:springdoc-openapi-ui:1.5.12")
+    implementation("org.hibernate:hibernate-core:5.6.2.Final")
 }
 
 tasks.withType<KotlinCompile> {

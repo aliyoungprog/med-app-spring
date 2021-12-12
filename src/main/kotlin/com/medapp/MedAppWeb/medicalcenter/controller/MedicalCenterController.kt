@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class MedicalCenterController {
+class MedicalCenterController(@Autowired private val medRepository: MedicalCenterRepository) {
 
-    @Autowired
-    val medicalCenterList = MedicalCenterRepository()
+    @GetMapping(path = ["/medcenters"])
+    fun getAllMedCenters() = medRepository.getAll()
 
-    @GetMapping(path = ["/mcenters"])
-    fun getAllMedCenters() = medicalCenterList.getAll()
-
-    @GetMapping(path = ["/mcenters/{id}"])
-    fun getMedCenterById(@PathVariable id: Int): MedicalCenter?{
-        return medicalCenterList.getById(id) ?: throw CoreNotFoundException("med-center not found $id")
+    @GetMapping(path = ["/medcenters/{id}"])
+    fun getMedCenterById(@PathVariable id: Int): MedicalCenter? {
+        return medRepository.getById(id) ?: throw CoreNotFoundException("med-center not found $id")
     }
+
+    @GetMapping(path = ["/medcenters/best"])
+    fun getBestMedCenters() = medRepository.getBestMedCenters()
 }
